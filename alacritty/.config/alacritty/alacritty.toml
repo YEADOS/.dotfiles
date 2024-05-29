@@ -1,0 +1,7 @@
+import = [
+	"~/.config/alacritty/themes/alacritty-theme/themes/baitong.toml/"
+]
+
+[window]
+	opacity = 0.7
+
