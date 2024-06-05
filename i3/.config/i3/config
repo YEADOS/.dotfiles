@@ -13,7 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -56,7 +56,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+#bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -184,13 +184,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bgcolour #00896b
+set $bgcolour #BF40BF
 set $ibgcolour #363636
 set $txtcolour #30e01f
 set $ubgcolour #ff0000
 
-client.focused $bgcolour $bgcolour $txtcolour $bgcolour
-client.unfocused $ibgcolour $ibgcolour $txtcolour $ibgcolour
+#client.focused $bgcolour 
+#client.unfocused $ibgcolour $ibgcolour $txtcolour $ibgcolour
 
 # Enable floating for pop-ups and dialogs
 for_window [window_role="pop-up"] floating enable
@@ -201,18 +201,44 @@ gaps inner 10
 gaps outer 10
 
 # Set border size
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 
 # Example: Set specific window class to float and define position and size
-for_window [class="Gimp"] floating enable, move position 20 px 20 px, resize set 1024 px 768 px
+#for_window [class="Gimp"] floating enable, move position 20 px 20 px, resize set 1024 px 768 px
+
+# class                 border  bground text    indicator child_border
+#client.focused          #6272A4 #6272A4 #61ffca #6272A4   #6272A4
+#client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+#client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+#client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+#client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+#client.background       #F8F8F2
+
+bar {
+  colors {
+    background #282A36
+    statusline #F8F8F2
+    separator  #44475A
+
+    focused_workspace  #44475A #44475A #F8F8F2
+    active_workspace   #282A36 #44475A #F8F8F2
+    inactive_workspace #282A36 #282A36 #BFBFBF
+    urgent_workspace   #FF5555 #FF5555 #F8F8F2
+    binding_mode       #FF5555 #FF5555 #F8F8F2
+  }
+  status_command i3status 
+}
+
+bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
 
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+#bar {
+#        status_command i3status
+#}
 
 exec_always feh --bg-scale /home/nick/Pictures/wallpaper.jpg
-exec --no-startup-id picom
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
