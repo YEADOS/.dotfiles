@@ -215,20 +215,6 @@ for_window [class="^.*"] border pixel 0
 
 #client.background       #F8F8F2
 
-bar {
-  colors {
-    background #282A36
-    statusline #F8F8F2
-    separator  #44475A
-
-    focused_workspace  #44475A #44475A #F8F8F2
-    active_workspace   #282A36 #44475A #F8F8F2
-    inactive_workspace #282A36 #282A36 #BFBFBF
-    urgent_workspace   #FF5555 #FF5555 #F8F8F2
-    binding_mode       #FF5555 #FF5555 #F8F8F2
-  }
-  status_command i3status 
-}
 
 bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
 
@@ -242,3 +228,4 @@ bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F
 
 exec_always feh --bg-scale /home/nick/Pictures/wallpaper.jpg
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
